@@ -6,8 +6,10 @@
 <title>VIVASOLEIL ACSTA</title>
 <script>
   (function () {
-    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-      || (window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
+    var ua = navigator.userAgent || '';
+    // iPadOS は UA が Mac を名乗るためタッチ有無も併用
+    var isIpad = /iPad/i.test(ua) || (/Macintosh/i.test(ua) && 'ontouchend' in document);
+    var isMobile = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua) || isIpad;
     location.replace(isMobile ? 'mobile.html' : 'pc.html');
   })();
 </script>
